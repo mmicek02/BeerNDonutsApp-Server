@@ -69,6 +69,30 @@ function makeCommentsArray(beers) {
         },
     ];
 }
+function makeExpectBeerPairing(beer, comments=[]) {
+    const number_of_comments = comments
+        .filter(comment => comment.beer_id === beer.id)
+        .length
+    
+    return {
+        id: beer.id,
+        style: beer.style,
+        number_of_comments,
+    }
+}
+
+function makeExpectBeerPairingComments(beerId, comments) {
+    const expectedComments = comments
+        .filter(comment => comment.beer_id === beerId)
+    
+    return expectedComments.map(comment => {
+        return {
+            id: comment.id,
+            text: comment.text,
+            date_created: comment.date_created.toISOString(),
+        }
+    })
+}
 
 function makeBeerNDonutFixtures() {
     const testBeers = makeBeersArray()
@@ -97,7 +121,9 @@ function cleanTables(db) {
 module.exports = {
     makeBeersArray,
     makeCommentsArray,
-
+    makeExpectBeerPairing,
+    makeExpectBeerPairingComments,
+    
     makeBeerNDonutFixtures,
     cleanTables,
 }
