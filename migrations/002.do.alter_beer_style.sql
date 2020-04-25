@@ -5,14 +5,13 @@ CREATE TYPE beer_type AS ENUM (
     'Coffee Porter',
     'Cream Ale'
     'India Pale Ale'
-    'IPA'
     'NEIPA'
     'Pale Ale'
     'Pilsner'
     'Porter'
     'Russian Imperial Stout'
     'Saison'
-    'Stout '
+    'Stout'
     'Sour'
 );
 
