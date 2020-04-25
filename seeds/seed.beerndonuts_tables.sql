@@ -7,19 +7,19 @@ TRUNCATE
 
 INSERT INTO beerndonuts_beers (style, donut_pairing, tasting_notes)
 VALUES
-    ('Belgian Ale', 'Sprinkled Donut'),
-    ('Blonde Ale', 'Plain glazed Donut', '	Buttery and Sweet, meet rich and golden'),
+    ('Belgian_Ale', 'Sprinkled Donut', 'PLACEHOLDER TEXT'),
+    ('Blonde_Ale', 'Plain glazed Donut', '	Buttery and Sweet, meet rich and golden'),
     ('Cider', 'Plain Old Fashioned Doughnut', 'Buttery and Sweet, meet rich and golden'),
-    ('Coffee Porter', 'Louisiana Beignets'),
-    ('India Pale Ale', 'Chocolate Glazed Doughnut', 'Big, bitter flavors offset sweetness'),
+    ('Coffee_Porter', 'Louisiana Beignets', 'PLACEHOLDER TEXT'),
+    ('IPA', 'Chocolate Glazed Doughnut', 'Big, bitter flavors offset sweetness'),
     ('NEIPA', 'Strawberry Glazed donut', 'Get berry blasted with full-on juice bomb'),
-    ('Pale Ale', 'Boston Cream Donut'),
+    ('Pale_Ale', 'Boston Cream Donut', 'PLACEHOLDER TEXT'),
     ('Pilsner', 'Powdered Sugar Donut', 'Light and airy'),
-    ('Porter', 'Long John'),
-    ('Russian Imperial Stout'),
-    ('Saison', 'New York City Cronut'),
+    ('Porter', 'Long John', 'PLACEHOLDER TEXT'),
+    ('Russian_Imperial_Stout', 'New England Cider Donut', 'PLACEHOLDER TEXT'),
+    ('Saison', 'New York City Cronut', 'PLACEHOLDER TEXT'),
     ('Stout', 'Cinnamon Sugar Donut', 'Bring ot the rich, spiced flavors'),
-    ('Sour', 'Jelly Filled Donut');
+    ('Sour', 'Jelly Filled Donut', 'PLACEHOLDER TEXT');
 
 INSERT INTO beerndonuts_comments (text, beer_id)
 VALUES
