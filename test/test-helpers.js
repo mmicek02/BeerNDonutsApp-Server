@@ -4,21 +4,25 @@ function makeBeersArray(){
             id: 1,
             style: 'IPA',
             donut_pairing: 'Kronut',
+            tasting_notes: 'PLACEHOLDER TEXT',
         },
         {
             id: 2,
             style: 'Sour',
             donut_pairing: 'Jelly filled donut',
+            tasting_notes: 'PLACEHOLDER TEXT',
         },
         {
             id: 3,
             style: 'Pale_Ale',
-            donut_pairing: 'Old Fashioned Donut'
+            donut_pairing: 'Old Fashioned Donut',
+            tasting_notes: 'PLACEHOLDER TEXT',
         },
         {
             id: 4,
             style: 'Stout',
-            donut_pairing: 'Long John'
+            donut_pairing: 'Long John',
+            tasting_notes: 'PLACEHOLDER TEXT',
         }
     ];
 }
@@ -96,7 +100,7 @@ function makeExpectBeerPairingComments(beerId, comments) {
 
 function makeBeerNDonutFixtures() {
     const testBeers = makeBeersArray()
-    const testComments = makeCommentsArray(beers)
+    const testComments = makeCommentsArray(testBeers)
     return { testBeers, testComments }
 }
 
@@ -118,6 +122,26 @@ function cleanTables(db) {
     )
 }
 
+function seedBeersTables(db, beers, comments=[]) {
+    // use a transaction to group the queries and auto rollback on any failure
+    return db.transaction(async trx => {
+      await trx.into('beerndonuts_beers').insert(beers)
+      // update the auto sequence to match the forced id values
+      await trx.raw(
+        `SELECT setval('beerndonuts_beers_id_seq', ?)`,
+        [beers[beers.length - 1].id],
+      )
+      // only insert comments if there are some, also update the sequence counter
+      if (comments.length) {
+        await trx.into('beerndonuts_comments').insert(comments)
+        await trx.raw(
+          `SELECT setval('beerndonuts_comments_id_seq', ?)`,
+          [comments[comments.length - 1].id],
+        )
+      }
+    })
+  }
+
 module.exports = {
     makeBeersArray,
     makeCommentsArray,
@@ -126,4 +150,5 @@ module.exports = {
     
     makeBeerNDonutFixtures,
     cleanTables,
+    seedBeersTables,
 }

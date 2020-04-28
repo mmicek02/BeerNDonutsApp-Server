@@ -17,6 +17,10 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(cors())
 
+app.get('/', (req, res) => {
+    res.send('Hello, world!')
+})
+
 app.use('/api/comments', commentRouter)
 
 app.use(function errorHandle(error, req, res, next) {
