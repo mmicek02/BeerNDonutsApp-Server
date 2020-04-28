@@ -14,7 +14,9 @@ const CommentsService = {
       .insert(newComment)
       .into('beerndonuts_comments')
       .returning('*')
-      .then(([comment]) => comment)
+      .then(comments => {
+        return comments[0]
+      })
   },
   deleteComment(knex, id) {
     return knex('beerndonuts_comments')
