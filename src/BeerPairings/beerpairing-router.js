@@ -6,7 +6,7 @@ const beerPairingRouter = express.Router()
 beerPairingRouter
   .route('/')
   .get((req, res, next) => {
-    BeerPairingService.getAllArticles(req.app.get('db'))
+    BeerPairingService.getAllBeerPairings(req.app.get('db'))
       .then(beers => {
         console.log(beers)
         res.json(beers.map(BeerPairingService.serializeBeerPairings))

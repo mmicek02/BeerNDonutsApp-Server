@@ -5,8 +5,9 @@ const cors = require('cors')
 const helmet = require('helmet')
 
 const { NODE_ENV } = require('./config')
-const commentRouter = require('./Comments/comments-router'
-)
+const commentRouter = require('./Comments/comments-router')
+const beerPairingRouter = require('./BeerPairings/beerpairing-router')
+
 const app = express()
 
 const morganOption = (NODE_ENV === 'production')
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/comments', commentRouter)
+app.use('/api/beerpairings', beerPairingRouter)
 
 app.use(function errorHandle(error, req, res, next) {
     let response

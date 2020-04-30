@@ -1,5 +1,5 @@
 const BeerPairingService = {
-    getAllComments(knex) {
+    getAllBeerPairings(knex) {
         return knex.select('*').from('beerndonuts_beers')
     },
     getById(knex, id) {
@@ -24,6 +24,7 @@ const BeerPairingService = {
     serializeBeerPairings(beer) {
         return {
             id: beer.id,
+            number_of_comments: beer.number_of_comments,
             donut_pairing: beer.donut_pairing,
             tasting_notes: beer.tasting_notes,
             style: beer.style,
