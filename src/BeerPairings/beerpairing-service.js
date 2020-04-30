@@ -34,7 +34,7 @@ const BeerPairingService = {
     serializeBeerPairingsComment(comment) {
         return {
             id: comment.id,
-            beer_id: commment.beer_id,
+            beer_id: comment.beer_id,
             text: comment.text,
             date_created: new Date(comment.date_created),
         }

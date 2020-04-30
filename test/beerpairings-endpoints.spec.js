@@ -56,7 +56,7 @@ describe('BeerPairing Endpoints', function() {
         })
     })
 
-    describe.only(`GET /api/beerpairings/:beer_id`, () => {
+    describe(`GET /api/beerpairings/:beer_id`, () => {
         context(`Given no beer and donut pairings`, () => {
           it(`responds with 404`, () => {
             const beerId = 123456
@@ -88,4 +88,38 @@ describe('BeerPairing Endpoints', function() {
           })
         })
     })
+
+    describe(`GET /api/beerpairings/:beer_id/comments`, () => {
+        context(`Given no beers`, () => {
+
+          it(`responds with 404`, () => {
+            const beerId = 123456
+            return supertest(app)
+              .get(`/api/beerpairings/${beerId}/comments`)
+              .expect(404, { error: `Beer and Donut Pairing doesn't exist` })
+          })
+        })
+    
+        context('Given there are comments for beer and donut pairing in the database', () => {
+          beforeEach('insert Beer and Donut Pairings', () =>
+            helpers.seedBeersTables(
+              db,
+              testBeers,
+              testComments,
+            )
+          )
+    
+          it('responds with 200 and the specified comments', () => {
+            const beerId = 1
+            const expectedComments = helpers.makeExpectBeerPairingComments(
+              beerId, 
+              testComments,
+            )
+    
+            return supertest(app)
+              .get(`/api/beerpairings/${beerId}/comments`)
+              .expect(200, expectedComments)
+          })
+        })
+      })
 })
