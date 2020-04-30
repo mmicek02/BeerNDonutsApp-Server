@@ -24,7 +24,7 @@ describe('BeerPairing Endpoints', function() {
   
     afterEach('cleanup', () => helpers.cleanTables(db))
 
-    describe.only(`GET /api/beerpairings`, () => {
+    describe(`GET /api/beerpairings`, () => {
         context(`Given no beer and donut pairings`, () => {
           it(`responds with 200 and an empty list`, () => {
             return supertest(app)
@@ -52,6 +52,39 @@ describe('BeerPairing Endpoints', function() {
             return supertest(app)
               .get('/api/beerpairings')
               .expect(200, expectedBeerPairings)
+          })
+        })
+    })
+
+    describe.only(`GET /api/beerpairings/:beer_id`, () => {
+        context(`Given no beer and donut pairings`, () => {
+          it(`responds with 404`, () => {
+            const beerId = 123456
+            return supertest(app)
+              .get(`/api/beerpairings/${beerId}`)
+              .expect(404, { error: `Beer and Donut Pairing doesn't exist` })
+          })
+        })
+    
+        context('Given there are beer and donut pairings in the database', () => {
+          beforeEach('insert Beers and Donut Pairings', () =>
+            helpers.seedBeersTables(
+              db,
+              testBeers,
+              testComments,
+            )
+          )
+    
+          it('responds with 200 and the specified beer and donut pairing', () => {
+            const beerId = 2
+            const expectedBeer = helpers.makeExpectBeerPairing(
+              testBeers[beerId - 1],
+              testComments,
+            )
+    
+            return supertest(app)
+              .get(`/api/beerpairings/${beerId}`)
+              .expect(200, expectedBeer)
           })
         })
     })

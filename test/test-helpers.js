@@ -81,7 +81,9 @@ function makeExpectBeerPairing(beer, comments=[]) {
     return {
         id: beer.id,
         style: beer.style,
-        number_of_comments,
+        tasting_notes: beer.tasting_notes,
+        donut_pairing: beer.donut_pairing,
+        //number_of_comments,
     }
 }
 
