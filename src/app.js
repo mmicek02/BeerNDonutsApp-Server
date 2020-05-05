@@ -1,12 +1,12 @@
 require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
-const cors = require('cors')
 const helmet = require('helmet')
 
 const { NODE_ENV } = require('./config')
 const commentRouter = require('./Comments/comments-router')
 const beerPairingRouter = require('./BeerPairings/beerpairing-router')
+
 const cors = require('cors');
 const {CLIENT_ORIGIN} = require('./config');
 
@@ -18,7 +18,6 @@ const morganOption = (NODE_ENV === 'production')
 
 app.use(morgan(morganOption))
 app.use(helmet())
-app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')
