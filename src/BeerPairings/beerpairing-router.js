@@ -8,7 +8,6 @@ beerPairingRouter
   .get((req, res, next) => {
     BeerPairingService.getAllBeerPairings(req.app.get('db'))
       .then(beers => {
-        console.log(beers)
         res.json(beers.map(BeerPairingService.serializeBeerPairings))
       })
       .catch(next)
