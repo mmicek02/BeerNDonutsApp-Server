@@ -12,7 +12,7 @@ CREATE TYPE beer_type AS ENUM (
     'Imperial Stout',
     'Saison',
     'Stout',
-    'Sour'
+    'Sour',
 );
 
 ALTER TABLE beerndonuts_beers
