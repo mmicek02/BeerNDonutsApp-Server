@@ -1,6 +1,21 @@
-# Express Boilerplate!
+# Beer N' Donuts
 
-This is a boilerplate project used for starting new projects!
+### Summary
+This apps helps you navigate the world of beer and donut pairings. 
+
+### Screenshots
+<img src ="./src/Media/Screenshots/landingPage.png" alt="Landing Page" width="300px">
+<img src ="./src/Media/Screenshots/searchPage.png" alt="Search Page" width="300px">
+<img src ="./src/Media/Screenshots/resultsPage.png" alt="Results Page" width="300px">
+<img src ="./src/Media/Screenshots/altSearchPage.png" alt="Alt Search Page" width="300px">
+
+### Technology Used
+FRONT END: HTML, CSS, JS, REACT
+
+BACK END: NODE.JS, EXPRESS.JS, SQL
+
+### Live Link
+https://beerndonut-app.now.sh/
 
 ## Set up
 
@@ -24,3 +39,33 @@ Run the tests `npm test`
 ## Deploying
 
 When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+
+
+## Access the API
+
+### Beer Endpoints
+
+#### GET /api/beerpairings
+This will return the following information for each beer 
+
+{
+    id: '',
+    style: '',
+    tasting_notes: '',
+    donut_pairing: ''
+}
+
+####  GET /api/beerpairings/:beerId
+This will return the following information for the beer with the beerId 
+
+{
+    id: '',
+    style: '',
+    tasting_notes: '',
+    donut_pairing: ''
+}
+
+### Comments Endpoints
+
+#### POST /api/comments
+This will let you post a comment to a specific beer.
